@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/*
+ * ─── Colour Tokens ───────────────────────────────────────────────
+ * All colours from the scope document are defined here as Tailwind
+ * theme tokens via @theme. This means you can use them as utility
+ * classes like `bg-background`, `text-primary`, `border-divider`, etc.
+ */
+@theme {
+  --color-background: #0a0a0f;
+  --color-surface: #12121a;
+  --color-primary: #00d4ff;
+  --color-secondary: #a855f7;
+  --color-text-primary: #f1f1f1;
+  --color-text-muted: #9ca3af;
+  --color-divider: #1f1f2e;
+}
+
+/* ─── Base Resets ──────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar Styling (Chromium + Firefox) ───────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-divider);
+  border-radius: 4px;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-divider) var(--color-background);
+}
+
+/* ─── Selection highlight ──────────────────────────────────────── */
+::selection {
+  background: rgba(0, 212, 255, 0.25);
+  color: #fff;
+}
