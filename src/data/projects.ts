@@ -84,7 +84,7 @@ export const projects: Project[] = [
       "PostgreSQL",
       "Vercel",
     ],
-    github: "", // TODO: Add your GitHub repo URL here
+    github: "https://github.com/hsohail7/SilentWave", // TODO: Add your GitHub repo URL here
   },
   {
     title: "DHT Peer-to-Peer Network",

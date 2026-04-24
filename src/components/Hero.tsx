@@ -21,7 +21,6 @@ export default function Hero() {
   /* ── Typing / deleting loop ───────────────────────────────── */
   useEffect(() => {
     const current = roles[roleIndex];
-    const speed = isDeleting ? 40 : 80;
 
     if (!isDeleting && displayed === current) {
       // Pause at the end of the word, then start deleting
@@ -30,15 +29,21 @@ export default function Hero() {
     }
 
     if (isDeleting && displayed === "") {
-      // Move to next role
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-      return;
+      // Move to next role — use a short timeout so state updates
+      // happen inside a timer callback, not synchronously in the effect body
+      const next = setTimeout(() => {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+      }, 50);
+      return () => clearTimeout(next);
     }
 
+    const speed = isDeleting ? 40 : 80;
     const timeout = setTimeout(() => {
       setDisplayed(
-        isDeleting ? current.slice(0, displayed.length - 1) : current.slice(0, displayed.length + 1)
+        isDeleting
+          ? current.slice(0, displayed.length - 1)
+          : current.slice(0, displayed.length + 1)
       );
     }, speed);
 
@@ -49,7 +54,7 @@ export default function Hero() {
     <section className="relative flex min-h-screen items-center justify-center px-6">
       {/* Subtle radial glow behind the hero */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/3 h-125 w-125 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
       </div>
 
       <motion.div
@@ -79,7 +84,7 @@ export default function Hero() {
           <br />
           <span className="text-primary">
             {displayed}
-            <span className="ml-0.5 inline-block w-[3px] animate-pulse bg-primary align-middle" style={{ height: "1em" }} />
+            <span className="ml-0.5 inline-block w-0.75 animate-pulse bg-primary align-middle" style={{ height: "1em" }} />
           </span>
         </motion.h1>
 
@@ -88,11 +93,11 @@ export default function Hero() {
           variants={fadeUp}
           className="mt-6 max-w-xl text-lg text-text-muted"
         >
-          A Software Engineering graduate from Western University who{" "}
-          {/* TODO: Complete this bio sentence — describe what drives you,
-              what kind of work excites you, and what you're looking for.
-              Example: "...loves building scalable backend systems and
-              is looking for a team where I can grow as an engineer." */}
+          A Software Engineering graduate from Western University who loves
+          building things. From distributed systems
+          and real-time backends to full-stack applications that people actually
+          use. Currently looking for software engineering roles across Ontario
+          where I can contribute and keep growing.
         </motion.p>
 
         {/* ── CTA Buttons ──────────────────────────────────── */}

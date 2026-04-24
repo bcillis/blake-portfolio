@@ -52,10 +52,14 @@ export default function About() {
           <div>
             <p className="text-lg leading-relaxed text-text-muted">
               I'm a Software Engineering graduate from Western University with a
-              passion for building scalable systems and meaningful software. I{" "}
-              {/* TODO: Continue this paragraph — talk about your interests,
-                  what you've built, what kind of role you're looking for, etc.
-                  Keep it to 3-4 sentences total. */}
+              passion for building scalable systems and meaningful software.
+              I've worked on projects that cover a wide variety of topics from a multithreaded C++ chat
+              backend to a React Native mobile app built alongside real
+              healthcare professionals, and I'm most determined when the problem
+              is hard enough to require real engineering thought. I care about
+              writing code that's not just functional, but maintainable and
+              well-reasoned. I'm currently seeking junior software engineering
+              roles across Hamilton, the KW corridor, and the GTA.
             </p>
 
             {/* ── Stat pills ──────────────────────────────────── */}
